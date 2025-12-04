@@ -20,18 +20,25 @@ export const metadata: Metadata = {
   authors: [{ name: "Channel D.O" }],
   creator: "Channel D.O",
   publisher: "Channel D.O",
+  icons: {
+    icon: '/fav.webp',
+    shortcut: '/fav.webp',
+    apple: '/fav.webp',
+  },
   openGraph: {
     type: "website",
     locale: "bn_BD",
-    url: "https://yourwebsite.com",
+    url: "https://www.channeldonews.com",
     title: "Channel D.O - সর্বশেষ বাংলাদেশ ও আন্তর্জাতিক সংবাদ",
     description: "Channel D.O - বাংলাদেশের শীর্ষস্থানীয় অনলাইন সংবাদপত্র",
     siteName: "Channel D.O",
+    images: ['/fav.webp'],
   },
   twitter: {
     card: "summary_large_image",
     title: "Channel D.O",
     description: "বাংলাদেশের শীর্ষস্থানীয় অনলাইন সংবাদপত্র",
+    images: ['/fav.webp'],
   },
 };
 
