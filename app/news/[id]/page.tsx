@@ -6,6 +6,7 @@ import Link from 'next/link';
 import ProfessionalHeader from '@/components/home/ProfessionalHeader';
 import Footer from '@/components/Footer';
 import CommentSection from '@/components/CommentSection';
+import { Skeleton } from '@/components/ui/skeleton';
 
 interface News {
   _id: string;
@@ -196,11 +197,124 @@ export default function NewsDetailPage() {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-white">
-        <div className="text-center">
-          <div className="w-12 h-12 mx-auto mb-4 border-4 border-[#D00614] border-t-transparent rounded-full animate-spin"></div>
-          <p className="text-gray-600">লোড হচ্ছে...</p>
+      <div className="min-h-screen bg-gray-50">
+        <ProfessionalHeader />
+
+        {/* Breadcrumb Skeleton */}
+        <div className="bg-white border-b">
+          <div className="max-w-[1400px] mx-auto px-4 py-3">
+            <Skeleton className="h-4 w-64" />
+          </div>
         </div>
+
+        <div className="max-w-[1400px] mx-auto px-4 py-8">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
+            {/* Main Content Skeleton */}
+            <div className="lg:col-span-8">
+              <article className="bg-white shadow-sm">
+                {/* Category Badge */}
+                <div className="px-6 pt-6">
+                  <Skeleton className="h-7 w-32 rounded" />
+                </div>
+
+                {/* Title */}
+                <div className="px-6 pt-4 pb-6 space-y-3">
+                  <Skeleton className="h-10 w-full" />
+                  <Skeleton className="h-10 w-5/6" />
+                </div>
+
+                {/* Meta Info */}
+                <div className="px-6 pb-6 border-b border-gray-200">
+                  <div className="flex items-center gap-4">
+                    <Skeleton className="h-4 w-32" />
+                    <Skeleton className="h-4 w-32" />
+                    <Skeleton className="h-4 w-24" />
+                  </div>
+                </div>
+
+                {/* Summary */}
+                <div className="px-6 py-6 bg-gray-50 border-b border-gray-200">
+                  <Skeleton className="h-6 w-full mb-2" />
+                  <Skeleton className="h-6 w-4/5" />
+                </div>
+
+                {/* Featured Image */}
+                <div className="px-6 py-6">
+                  <Skeleton className="w-full aspect-video rounded-lg" />
+                </div>
+
+                {/* Content */}
+                <div className="px-6 py-8 space-y-3">
+                  <Skeleton className="h-4 w-full" />
+                  <Skeleton className="h-4 w-full" />
+                  <Skeleton className="h-4 w-5/6" />
+                  <Skeleton className="h-4 w-full" />
+                  <Skeleton className="h-4 w-4/5" />
+                  <Skeleton className="h-4 w-full" />
+                  <Skeleton className="h-4 w-3/4" />
+                </div>
+
+                {/* Social Share */}
+                <div className="px-6 pb-6 pt-4 border-t border-gray-200">
+                  <div className="flex items-center gap-2">
+                    <Skeleton className="h-10 w-10 rounded-full" />
+                    <Skeleton className="h-10 w-10 rounded-full" />
+                    <Skeleton className="h-10 w-10 rounded-full" />
+                  </div>
+                </div>
+              </article>
+
+              {/* Related News Skeleton */}
+              <div className="mt-8 bg-white shadow-sm p-6">
+                <Skeleton className="h-6 w-48 mb-4" />
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  {[1, 2, 3, 4].map((i) => (
+                    <div key={i} className="flex gap-4">
+                      <Skeleton className="h-24 w-32 rounded flex-shrink-0" />
+                      <div className="flex-1 space-y-2">
+                        <Skeleton className="h-4 w-full" />
+                        <Skeleton className="h-4 w-3/4" />
+                        <Skeleton className="h-3 w-24" />
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            {/* Sidebar Skeleton */}
+            <div className="lg:col-span-4 space-y-6">
+              {/* Popular News */}
+              <div className="bg-white shadow-sm p-6">
+                <Skeleton className="h-6 w-32 mb-4" />
+                <div className="space-y-4">
+                  {[1, 2, 3, 4, 5].map((i) => (
+                    <div key={i} className="flex gap-3">
+                      <Skeleton className="h-20 w-28 rounded flex-shrink-0" />
+                      <div className="flex-1 space-y-2">
+                        <Skeleton className="h-4 w-full" />
+                        <Skeleton className="h-4 w-3/4" />
+                        <Skeleton className="h-3 w-20" />
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Categories */}
+              <div className="bg-white shadow-sm p-6">
+                <Skeleton className="h-6 w-32 mb-4" />
+                <div className="space-y-2">
+                  {[1, 2, 3, 4, 5, 6].map((i) => (
+                    <Skeleton key={i} className="h-10 w-full rounded" />
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <Footer />
       </div>
     );
   }

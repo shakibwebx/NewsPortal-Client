@@ -5,6 +5,7 @@ import { useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import ProfessionalHeader from '@/components/home/ProfessionalHeader';
 import Footer from '@/components/Footer';
+import { Skeleton } from '@/components/ui/skeleton';
 
 interface News {
   _id: string;
@@ -84,11 +85,34 @@ function SearchContent() {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-white">
-        <div className="text-center">
-          <div className="w-12 h-12 mx-auto mb-4 border-4 border-[#D00614] border-t-transparent rounded-full animate-spin"></div>
-          <p className="text-gray-600">খোঁজা হচ্ছে...</p>
+      <div className="min-h-screen bg-white">
+        <ProfessionalHeader />
+        <div className="max-w-[1400px] mx-auto px-4 py-8">
+          {/* Search Header Skeleton */}
+          <div className="mb-8">
+            <Skeleton className="h-9 w-48 mb-2" />
+            <Skeleton className="h-5 w-64" />
+          </div>
+
+          {/* Search Results Skeleton */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {[1, 2, 3, 4, 5, 6].map((i) => (
+              <div key={i} className="bg-white rounded-lg overflow-hidden border border-gray-200">
+                <Skeleton className="h-[220px] w-full" />
+                <div className="p-4 space-y-3">
+                  <Skeleton className="h-6 w-full" />
+                  <Skeleton className="h-4 w-full" />
+                  <Skeleton className="h-4 w-3/4" />
+                  <div className="flex items-center justify-between pt-2">
+                    <Skeleton className="h-3 w-24" />
+                    <Skeleton className="h-3 w-16" />
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
+        <Footer />
       </div>
     );
   }
@@ -174,11 +198,31 @@ function SearchContent() {
 export default function SearchPage() {
   return (
     <Suspense fallback={
-      <div className="min-h-screen flex items-center justify-center bg-white">
-        <div className="text-center">
-          <div className="w-12 h-12 mx-auto mb-4 border-4 border-[#D00614] border-t-transparent rounded-full animate-spin"></div>
-          <p className="text-gray-600">লোড হচ্ছে...</p>
+      <div className="min-h-screen bg-white">
+        <ProfessionalHeader />
+        <div className="max-w-[1400px] mx-auto px-4 py-8">
+          <div className="mb-8">
+            <Skeleton className="h-9 w-48 mb-2" />
+            <Skeleton className="h-5 w-64" />
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {[1, 2, 3, 4, 5, 6].map((i) => (
+              <div key={i} className="bg-white rounded-lg overflow-hidden border border-gray-200">
+                <Skeleton className="h-[220px] w-full" />
+                <div className="p-4 space-y-3">
+                  <Skeleton className="h-6 w-full" />
+                  <Skeleton className="h-4 w-full" />
+                  <Skeleton className="h-4 w-3/4" />
+                  <div className="flex items-center justify-between pt-2">
+                    <Skeleton className="h-3 w-24" />
+                    <Skeleton className="h-3 w-16" />
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
+        <Footer />
       </div>
     }>
       <SearchContent />
