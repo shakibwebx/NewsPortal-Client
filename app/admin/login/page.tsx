@@ -3,7 +3,7 @@
 import { useState, FormEvent } from 'react';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
-import Link from 'next/link';
+// import Link from 'next/link';
 
 export default function AdminLogin() {
   const router = useRouter();
@@ -60,7 +60,7 @@ export default function AdminLogin() {
           <div className="bg-gradient-to-r from-[#D00614] to-[#a00510] p-8 text-center">
             <div className="flex justify-center mb-4">
               <Image
-                src="/logo.webp"
+                src="/logof.webp"
                 alt="Logo"
                 width={200}
                 height={53}

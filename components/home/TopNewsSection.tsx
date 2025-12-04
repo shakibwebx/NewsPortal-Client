@@ -89,8 +89,7 @@ export default function TopNewsSection({ news }: TopNewsSectionProps) {
               key={news._id}
               href={`/news/${news._id}`}
               className="col-span-1 row-span-1 group relative overflow-hidden rounded hover:shadow-lg transition h-[250px] md:h-auto"
-            >
-              <Image
+            ><Image
                 src={news.image}
                 alt={news.title}
                 fill

@@ -13,6 +13,9 @@ const nextConfig: NextConfig = {
       },
     ],
   },
+  turbopack: {
+    root: '/Users/shakib/Projects/news-portal/client',
+  },
 };
 
 export default nextConfig;
