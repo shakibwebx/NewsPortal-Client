@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
+import { Skeleton } from '@/components/ui/skeleton';
 
 interface Stats {
   totalNews: number;
@@ -129,8 +130,72 @@ export default function AdminDashboard() {
 
   if (loading) {
     return (
-      <div className="flex items-center justify-center h-64">
-        <div className="text-gray-500">Loading...</div>
+      <div className="max-w-7xl mx-auto space-y-8">
+        {/* Header Skeleton */}
+        <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-gray-200 to-gray-300 p-8 shadow-xl">
+          <Skeleton className="h-12 w-64 mb-2" />
+          <Skeleton className="h-4 w-48" />
+        </div>
+
+        {/* Stats Grid Skeleton */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {[1, 2, 3, 4].map((i) => (
+            <Card key={i} className="p-6">
+              <div className="flex items-start justify-between mb-4">
+                <div className="flex-1 space-y-2">
+                  <Skeleton className="h-4 w-24" />
+                  <Skeleton className="h-8 w-16" />
+                  <Skeleton className="h-3 w-32" />
+                </div>
+                <Skeleton className="w-14 h-14 rounded-xl" />
+              </div>
+              <Skeleton className="h-4 w-28" />
+            </Card>
+          ))}
+        </div>
+
+        {/* Quick Actions Skeleton */}
+        <Card className="p-6">
+          <div className="flex items-center gap-3 mb-6">
+            <Skeleton className="w-10 h-10 rounded-lg" />
+            <div className="space-y-2">
+              <Skeleton className="h-6 w-32" />
+              <Skeleton className="h-4 w-48" />
+            </div>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            {[1, 2, 3].map((i) => (
+              <Skeleton key={i} className="h-24 w-full rounded-lg" />
+            ))}
+          </div>
+        </Card>
+
+        {/* Recent Activity Skeleton */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <Card className="p-6">
+            <div className="flex items-center justify-between mb-4">
+              <Skeleton className="h-6 w-40" />
+              <Skeleton className="w-8 h-8 rounded" />
+            </div>
+            <div className="space-y-3">
+              {[1, 2, 3].map((i) => (
+                <Skeleton key={i} className="h-12 w-full rounded-lg" />
+              ))}
+            </div>
+          </Card>
+
+          <Card className="p-6">
+            <div className="flex items-center justify-between mb-4">
+              <Skeleton className="h-6 w-32" />
+              <Skeleton className="w-8 h-8 rounded" />
+            </div>
+            <div className="space-y-2">
+              {[1, 2, 3, 4].map((i) => (
+                <Skeleton key={i} className="h-12 w-full rounded-lg" />
+              ))}
+            </div>
+          </Card>
+        </div>
       </div>
     );
   }

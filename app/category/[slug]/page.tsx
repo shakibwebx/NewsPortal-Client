@@ -6,7 +6,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import ProfessionalHeader from '@/components/home/ProfessionalHeader';
 import Footer from '@/components/Footer';
-import LoadingSpinner from '@/components/ui/LoadingSpinner';
+import { Skeleton } from '@/components/ui/skeleton';
 
 interface News {
   _id: string;
@@ -75,7 +75,43 @@ export default function CategoryPage() {
   }, [slug]);
 
   if (loading) {
-    return <LoadingSpinner />;
+    return (
+      <>
+        <ProfessionalHeader />
+        <div className="min-h-screen bg-gray-50">
+          <div className="max-w-7xl mx-auto px-4 py-8">
+            {/* Category Header Skeleton */}
+            <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 mb-8">
+              <div className="flex items-center gap-3 mb-3">
+                <Skeleton className="h-10 w-10 rounded" />
+                <Skeleton className="h-10 w-64" />
+              </div>
+              <Skeleton className="h-4 w-full max-w-2xl" />
+            </div>
+
+            {/* News Grid Skeleton */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {[1, 2, 3, 4, 5, 6].map((i) => (
+                <div key={i} className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
+                  <Skeleton className="h-48 w-full" />
+                  <div className="p-5 space-y-3">
+                    <Skeleton className="h-4 w-20" />
+                    <Skeleton className="h-6 w-full" />
+                    <Skeleton className="h-4 w-full" />
+                    <Skeleton className="h-4 w-3/4" />
+                    <div className="flex items-center justify-between pt-3">
+                      <Skeleton className="h-3 w-24" />
+                      <Skeleton className="h-3 w-16" />
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+        <Footer />
+      </>
+    );
   }
 
   if (!category) {

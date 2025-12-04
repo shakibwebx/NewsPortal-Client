@@ -7,6 +7,7 @@ import TopNewsSection from '@/components/home/TopNewsSection';
 import PhotoGallerySection from '@/components/home/PhotoGallerySection';
 import VideoSection from '@/components/home/VideoSection';
 import Footer from '@/components/Footer';
+import { Skeleton } from '@/components/ui/skeleton';
 
 interface News {
   _id: string;
@@ -58,11 +59,62 @@ export default function HomePage() {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-white">
-        <div className="text-center">
-          <div className="w-12 h-12 mx-auto mb-4 border-4 border-[#D00614] border-t-transparent rounded-full animate-spin"></div>
-          <p className="text-gray-600">লোড হচ্ছে...</p>
+      <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-gray-50">
+        <ProfessionalHeader />
+
+        {/* Breaking News Skeleton */}
+        <div className="bg-gradient-to-r from-[#D00614] to-[#a00510] py-2">
+          <div className="max-w-7xl mx-auto px-4">
+            <Skeleton className="h-6 w-full bg-white/20" />
+          </div>
         </div>
+
+        {/* Top News Section Skeleton */}
+        <div className="max-w-[1400px] mx-auto px-4 py-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+            {/* Featured News Skeleton */}
+            <div className="bg-white rounded-xl overflow-hidden border border-gray-200">
+              <Skeleton className="h-[400px] w-full" />
+              <div className="p-6 space-y-3">
+                <Skeleton className="h-4 w-20" />
+                <Skeleton className="h-8 w-full" />
+                <Skeleton className="h-6 w-3/4" />
+                <Skeleton className="h-4 w-32" />
+              </div>
+            </div>
+
+            {/* Side News Skeleton */}
+            <div className="space-y-4">
+              {[1, 2, 3, 4].map((i) => (
+                <div key={i} className="bg-white rounded-xl overflow-hidden border border-gray-200 flex gap-4 p-4">
+                  <Skeleton className="h-24 w-32 rounded-lg flex-shrink-0" />
+                  <div className="flex-1 space-y-2">
+                    <Skeleton className="h-4 w-16" />
+                    <Skeleton className="h-5 w-full" />
+                    <Skeleton className="h-4 w-24" />
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Category News Grid Skeleton */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+            {[1, 2, 3, 4, 5, 6].map((i) => (
+              <div key={i} className="bg-white rounded-xl overflow-hidden border border-gray-200">
+                <Skeleton className="h-[200px] w-full" />
+                <div className="p-5 space-y-3">
+                  <Skeleton className="h-6 w-full" />
+                  <Skeleton className="h-4 w-full" />
+                  <Skeleton className="h-4 w-3/4" />
+                  <Skeleton className="h-3 w-24" />
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <Footer />
       </div>
     );
   }
