@@ -1,0 +1,85 @@
+import { api } from '@/services/api';
+import { News, Category } from '@/types';
+import Header from '@/components/Header';
+import FeaturedNewsCard from '@/components/FeaturedNewsCard';
+import NewsCard from '@/components/NewsCard';
+import PopularNewsList from '@/components/PopularNewsList';
+import Footer from '@/components/Footer';
+
+async function getHomePageData() {
+  try {
+    const [featuredRes, topNewsRes, latestNewsRes, popularNewsRes, categoriesRes] = await Promise.all([
+      api.news.getFeatured(),
+      api.news.getAll({ limit: 4 }),
+      api.news.getLatest(6),
+      api.news.getPopular(5),
+      api.categories.getAll()
+    ]);
+
+    return {
+      featured: featuredRes.data?.[0] || null,
+      topNews: topNewsRes.data || [],
+      latestNews: latestNewsRes.data || [],
+      popularNews: popularNewsRes.data || [],
+      categories: categoriesRes.data || []
+    };
+  } catch (error) {
+    console.error('Error fetching home page data:', error);
+    return {
+      featured: null,
+      topNews: [],
+      latestNews: [],
+      popularNews: [],
+      categories: []
+    };
+  }
+}
+
+export default async function Home() {
+  const { featured, topNews, latestNews, popularNews, categories } = await getHomePageData();
+  return (
+    <div className="min-h-screen bg-gray-50">
+      <Header categories={categories} />
+
+      <main className="max-w-7xl mx-auto px-4 py-6">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          <div className="lg:col-span-2 space-y-6">
+            {featured && <FeaturedNewsCard news={featured} />}
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {topNews.map((news: News) => (
+                <NewsCard key={news._id} news={news} variant="grid" />
+              ))}
+            </div>
+
+            <div className="bg-white rounded-lg shadow-sm p-6">
+              <div className="flex items-center justify-between mb-6">
+                <h2 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
+                  <span className="w-1 h-6 bg-red-600 rounded"></span>
+                  সর্বশেষ খবর
+                </h2>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {latestNews.map((news: News) => (
+                  <NewsCard key={news._id} news={news} variant="list" />
+                ))}
+              </div>
+            </div>
+          </div>
+
+          <div className="space-y-6">
+            <PopularNewsList news={popularNews} />
+
+            <div className="bg-gray-100 rounded-lg p-6 text-center">
+              <div className="h-60 flex items-center justify-center text-gray-400">
+                বিজ্ঞাপন স্থান
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+
+      <Footer categories={categories} />
+    </div>
+  );
+}
