@@ -66,7 +66,7 @@ export default function EditorialBoard() {
                   src={member.image}
                   alt={member.name}
                   fill
-                  className="object-cover object-top group-hover:scale-105 transition-transform duration-500"
+                  className="object-contain group-hover:scale-105 transition-transform duration-500"
                 />
               </div>
 
