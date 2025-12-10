@@ -45,7 +45,7 @@ export default function PhotoGallerySection() {
 
   return (
     <section className="bg-gray-50 py-8">
-      <div className="max-w-[1400px] mx-auto px-4">
+      <div className="max-w-[1600px] mx-auto px-4">
         {/* Section Header */}
         <div className="flex items-center justify-between mb-6">
           <div className="flex items-center gap-3">

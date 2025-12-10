@@ -130,7 +130,7 @@ export default function HomePage() {
       <TopNewsSection news={allNews} />
 
       {/* Main Content */}
-      <div className="max-w-[1400px] mx-auto px-4 py-8">
+      <div className="max-w-[1600px] mx-auto px-4 py-8">
         {/* Photo Gallery */}
         <PhotoGallerySection />
 
@@ -141,51 +141,99 @@ export default function HomePage() {
 
         {/* Category Sections */}
         {categories.map((category) => {
-          const categoryNews = allNews.filter(n => n.category?._id === category._id).slice(0, 6);
+          const categoryNews = allNews.filter(n => n.category?._id === category._id).slice(0, 9);
           if (categoryNews.length === 0) return null;
+
+          const [firstNews, ...restNews] = categoryNews;
 
           return (
             <div key={category._id} className="mt-10">
+              {/* Category Header with Link */}
               <div className="flex items-center justify-between mb-6">
                 <div className="flex items-center gap-3">
                   <div className="w-1 h-8 bg-[#D00614] rounded"></div>
-                  <h2 className="text-2xl font-bold text-gray-900">
+                  <h2 className="text-2xl font-bold text-gray-900" style={{ fontFamily: "'Noto Sans Bengali', sans-serif" }}>
                     {category.icon} {category.name}
                   </h2>
                 </div>
+                <a
+                  href={`/category/${category.slug}`}
+                  className="text-sm font-semibold text-[#D00614] hover:text-[#a00510] transition flex items-center gap-1"
+                  style={{ fontFamily: "'Noto Sans Bengali', sans-serif" }}
+                >
+                  সব দেখুন
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  </svg>
+                </a>
               </div>
-              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-                {categoryNews.map((news) => (
+
+              {/* Grid Layout: 6 columns, 3 rows */}
+              <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-3 auto-rows-fr">
+                {/* First News - 2 columns × 2 rows */}
+                {firstNews && (
+                  <a
+                    href={`/news/${firstNews._id}`}
+                    className="col-span-2 row-span-2 group relative overflow-hidden rounded-lg h-[400px] md:h-auto"
+                  >
+                    <img
+                      src={firstNews.image}
+                      alt={firstNews.title}
+                      className="w-full h-full object-cover group-hover:scale-105 transition duration-500"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent"></div>
+
+                    <div className="absolute top-3 left-3">
+                      <span className="bg-[#D00614] text-white px-2.5 py-1 rounded text-xs font-semibold">
+                        {category.icon} {category.name}
+                      </span>
+                    </div>
+
+                    <div className="absolute bottom-0 left-0 right-0 p-4">
+                      <h3 className="text-white text-lg font-bold mb-2 line-clamp-3 leading-tight group-hover:text-gray-200 transition" style={{ fontFamily: "'Noto Sans Bengali', sans-serif" }}>
+                        {firstNews.title}
+                      </h3>
+                      <p className="text-gray-200 text-sm mb-2 line-clamp-2">
+                        {firstNews.summary}
+                      </p>
+                      <div className="flex items-center text-gray-300 text-xs">
+                        <svg className="w-3.5 h-3.5 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                        {new Date(firstNews.createdAt).toLocaleDateString('bn-BD')}
+                      </div>
+                    </div>
+                  </a>
+                )}
+
+                {/* Rest 4 News - 1 column × 1 row each */}
+                {restNews.map((news) => (
                   <a
                     key={news._id}
                     href={`/news/${news._id}`}
-                    className="group bg-white rounded-xl overflow-hidden border border-gray-200 hover:border-gray-300 hover:shadow-2xl transition-all duration-300 hover:-translate-y-1"
+                    className="col-span-1 row-span-1 group relative overflow-hidden rounded-lg h-[200px] md:h-auto"
                   >
-                    <div className="relative h-[200px] overflow-hidden">
-                      <img
-                        src={news.image}
-                        alt={news.title}
-                        className="w-full h-full object-cover group-hover:scale-110 transition duration-700"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                      <div className="absolute top-3 left-3">
-                        <span className="bg-gradient-to-r from-[#D00614] to-[#a00510] text-white px-3 py-1.5 rounded-lg text-xs font-semibold shadow-lg backdrop-blur-sm">
-                          {category.icon} {category.name}
-                        </span>
-                      </div>
-                    </div>
-                    <div className="p-5">
-                      <h3 className="text-base font-bold text-gray-900 mb-2 line-clamp-2 group-hover:text-[#D00614] transition leading-tight">
+                    <img
+                      src={news.image}
+                      alt={news.title}
+                      className="w-full h-full object-cover group-hover:scale-105 transition duration-300"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent"></div>
+
+                    <div className="absolute bottom-0 left-0 right-0 p-2.5">
+                      <h3 className="text-white text-sm font-bold mb-1.5 line-clamp-2 leading-tight group-hover:text-gray-200 transition" style={{ fontFamily: "'Noto Sans Bengali', sans-serif" }}>
                         {news.title}
                       </h3>
-                      <p className="text-sm text-gray-600 line-clamp-2 mb-3">{news.summary}</p>
-                      <div className="flex items-center gap-2 text-xs text-gray-500">
-                        <span className="flex items-center gap-1">
-                          <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
-                            <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clipRule="evenodd" />
+                      <div className="flex items-center justify-between text-gray-300 text-[10px]">
+                        <span className="bg-[#D00614]/80 text-white px-1.5 py-0.5 rounded text-[9px] font-medium">
+                          {category.icon} {category.name}
+                        </span>
+                        <div className="flex items-center">
+                          <svg className="w-3 h-3 mr-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                           </svg>
                           {new Date(news.createdAt).toLocaleDateString('bn-BD')}
-                        </span>
+                        </div>
                       </div>
                     </div>
                   </a>

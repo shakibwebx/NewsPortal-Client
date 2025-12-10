@@ -7,54 +7,62 @@ import Footer from '@/components/Footer';
 
 interface TeamMember {
   id: number;
+  idNumber: string;
   name: string;
   position: string;
   image: string;
-  description: string;
 }
 
 const managementTeam: TeamMember[] = [
   {
     id: 1,
-    name: 'মোহাম্মদ আব্দুল করিম',
-    position: 'চেয়ারম্যান',
-    image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&h=400&fit=crop',
-    description: 'দীর্ঘ ৩০ বছরের সাংবাদিকতা অভিজ্ঞতা। জাতীয় প্রেস ক্লাবের সাবেক সভাপতি।'
+    idNumber: 'DOBD2501',
+    name: 'Md. Hasibul Hoque Lipu',
+    position: 'Chairman',
+    image: 'https://res.cloudinary.com/dge2c3dkx/image/upload/v1765370940/01_cwwgei.png'
   },
   {
     id: 2,
-    name: 'ফারহানা আক্তার',
-    position: 'ব্যবস্থাপনা পরিচালক',
-    image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&h=400&fit=crop',
-    description: 'গণমাধ্যম ব্যবস্থাপনায় পিএইচডি। ২০ বছরের নেতৃত্ব অভিজ্ঞতা।'
+    idNumber: 'DOBD2502',
+    name: 'Haji Asadul Hoque (Labu)',
+    position: 'Vice Chairman',
+    image: 'https://res.cloudinary.com/dge2c3dkx/image/upload/v1765371378/istockphoto-1341046662-612x612_vpogyu.jpg'
   },
   {
     id: 3,
-    name: 'রাশেদুল ইসলাম',
-    position: 'প্রধান নির্বাহী কর্মকর্তা',
-    image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&h=400&fit=crop',
-    description: 'ডিজিটাল মিডিয়া বিশেষজ্ঞ। প্রযুক্তি ও সাংবাদিকতার সমন্বয়ে দক্ষ।'
+    idNumber: 'DOBD2503',
+    name: 'Md. Abdullah Tipu Sultan',
+    position: 'CEO',
+    image: 'https://res.cloudinary.com/dge2c3dkx/image/upload/v1765371028/03_efqafj.png'
   },
-  {
+   {
     id: 4,
-    name: 'নাজমা সুলতানা',
-    position: 'আর্থিক পরিচালক',
-    image: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400&h=400&fit=crop',
-    description: 'চার্টার্ড অ্যাকাউন্টেন্ট। ১৫ বছরের ফিন্যান্স ম্যানেজমেন্ট অভিজ্ঞতা।'
+    idNumber: 'DOBD2505',
+    name: 'Md. Mohai Menul Hoque (Abir)',
+    position: 'Director (Administration)',
+    image: 'https://res.cloudinary.com/dge2c3dkx/image/upload/v1765371597/06_fugrbj.png'
   },
   {
     id: 5,
-    name: 'তাহমিদ হাসান',
-    position: 'প্রযুক্তি পরিচালক',
-    image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop',
-    description: 'সফটওয়্যার ইঞ্জিনিয়ার। ক্লাউড কম্পিউটিং ও AI বিশেষজ্ঞ।'
+    idNumber: 'DOBD2504',
+    name: 'Khandaker Abdul Kader',
+    position: 'Director (Finance)',
+    image: 'https://res.cloudinary.com/dge2c3dkx/image/upload/v1765371597/04_eardgv.png'
   },
+
   {
     id: 6,
-    name: 'শাহানা পারভীন',
-    position: 'মানবসম্পদ পরিচালক',
-    image: 'https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=400&h=400&fit=crop',
-    description: 'এইচআর ম্যানেজমেন্টে এমবিএ। কর্মী উন্নয়ন ও প্রশিক্ষণে বিশেষজ্ঞ।'
+    idNumber: 'DOBD2506',
+    name: 'Shri Samir Kumar Majumder',
+    position: 'Director (Communication)',
+    image: 'https://res.cloudinary.com/dge2c3dkx/image/upload/v1765371597/07_bpevui.png'
+  },
+  {
+    id: 7,
+    idNumber: 'DOBD2507',
+    name: 'Khandaker Habibul Karim Chanchal',
+    position: 'Director (Operations)',
+    image: 'https://res.cloudinary.com/dge2c3dkx/image/upload/v1765371596/08_ejx8ze.png'
   }
 ];
 
@@ -82,28 +90,33 @@ export default function ManagementBoard() {
 
       {/* Team Grid */}
       <div className="max-w-7xl mx-auto px-4 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
           {managementTeam.map((member) => (
             <div
               key={member.id}
-              className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2"
+              className="group bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300"
             >
-              <div className="relative h-80 bg-gradient-to-br from-gray-100 to-gray-200">
+              {/* Image Container */}
+              <div className="relative h-64 overflow-hidden bg-gray-100">
                 <Image
                   src={member.image}
                   alt={member.name}
                   fill
-                  className="object-cover"
+                  className="object-cover object-top group-hover:scale-105 transition-transform duration-500"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-                <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
-                  <h3 className="text-2xl font-bold mb-1">{member.name}</h3>
-                  <p className="text-sm text-white/90 font-medium">{member.position}</p>
-                </div>
               </div>
-              <div className="p-6">
-                <p className="text-gray-600 text-sm leading-relaxed">
-                  {member.description}
+
+              {/* Info Section - Below image */}
+              <div className="p-5 bg-gradient-to-br from-gray-50 to-white">
+                <h3 className="text-lg font-bold text-gray-900 mb-2 leading-tight">{member.name}</h3>
+                <div className="flex items-center gap-2 mb-2">
+                  <div className="h-1 w-10 bg-[#D00614] rounded-full"></div>
+                  <p className="text-sm font-semibold text-gray-600 uppercase tracking-wide">
+                    {member.position}
+                  </p>
+                </div>
+                <p className="text-xs text-gray-500 font-mono bg-gray-100 inline-block px-3 py-1 rounded-full">
+                  ID: {member.idNumber}
                 </p>
               </div>
             </div>

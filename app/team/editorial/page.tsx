@@ -7,75 +7,26 @@ import Footer from '@/components/Footer';
 
 interface TeamMember {
   id: number;
+  idNumber: string;
   name: string;
   position: string;
   image: string;
-  description: string;
 }
 
 const editorialTeam: TeamMember[] = [
   {
     id: 1,
-    name: 'জাকির হোসেন',
-    position: 'সম্পাদক',
-    image: 'https://images.unsplash.com/photo-1556157382-97eda2d62296?w=400&h=400&fit=crop',
-    description: 'জাতীয় পুরস্কার প্রাপ্ত সাংবাদিক। ৩৫ বছরের সাংবাদিকতা অভিজ্ঞতা।'
+    idNumber: 'DOED2501',
+    name: 'EMDAD HOSSAIN',
+    position: 'Editor-in-Chief',
+    image: 'https://res.cloudinary.com/dge2c3dkx/image/upload/v1765373120/09_oo0n9i.png'
   },
   {
     id: 2,
-    name: 'সালমা খাতুন',
-    position: 'নির্বাহী সম্পাদক',
-    image: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?w=400&h=400&fit=crop',
-    description: 'অনুসন্ধানী সাংবাদিকতায় পিএইচডি। একাধিক জাতীয় পুরস্কার বিজয়ী।'
-  },
-  {
-    id: 3,
-    name: 'মাহমুদুল হক',
-    position: 'সহযোগী সম্পাদক',
-    image: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=400&h=400&fit=crop',
-    description: 'রাজনৈতিক বিশ্লেষক। দেশের শীর্ষস্থানীয় কলামিস্ট।'
-  },
-  {
-    id: 4,
-    name: 'রুমানা আফরোজ',
-    position: 'বার্তা সম্পাদক',
-    image: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&h=400&fit=crop',
-    description: 'জরুরি সংবাদ পরিবেশনায় বিশেষজ্ঞ। ২৫ বছরের অভিজ্ঞতা।'
-  },
-  {
-    id: 5,
-    name: 'কামাল উদ্দিন',
-    position: 'প্রধান প্রতিবেদক',
-    image: 'https://images.unsplash.com/photo-1463453091185-61582044d556?w=400&h=400&fit=crop',
-    description: 'অনুসন্ধানী রিপোর্টিংয়ে অভিজ্ঞ। একাধিক গুরুত্বপূর্ণ প্রতিবেদনের জন্য সুপরিচিত।'
-  },
-  {
-    id: 6,
-    name: 'নাসরিন জাহান',
-    position: 'ফিচার এডিটর',
-    image: 'https://images.unsplash.com/photo-1598550874175-4d0ef436c909?w=400&h=400&fit=crop',
-    description: 'সাহিত্য ও সংস্কৃতি বিভাগে বিশেষজ্ঞ। সৃজনশীল লেখায় পুরস্কার প্রাপ্ত।'
-  },
-  {
-    id: 7,
-    name: 'তানভীর আহমেদ',
-    position: 'ক্রীড়া সম্পাদক',
-    image: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=400&h=400&fit=crop',
-    description: 'ক্রীড়া সাংবাদিকতায় ১৮ বছর। আন্তর্জাতিক ক্রিকেট ভাষ্যকার।'
-  },
-  {
-    id: 8,
-    name: 'সাবিনা ইয়াসমিন',
-    position: 'বিনোদন সম্পাদক',
-    image: 'https://images.unsplash.com/photo-1551836022-d5d88e9218df?w=400&h=400&fit=crop',
-    description: 'চলচ্চিত্র ও বিনোদন জগতে গভীর পর্যবেক্ষণ। জনপ্রিয় কলাম লেখক।'
-  },
-  {
-    id: 9,
-    name: 'আরিফুল ইসলাম',
-    position: 'প্রযুক্তি সম্পাদক',
-    image: 'https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?w=400&h=400&fit=crop',
-    description: 'প্রযুক্তি বিষয়ক লেখক ও বিশ্লেষক। ডিজিটাল মিডিয়া বিশেষজ্ঞ।'
+    idNumber: 'DOED2502',
+    name: 'RUDRO RASEL',
+    position: 'News Editor',
+    image: 'https://res.cloudinary.com/dge2c3dkx/image/upload/v1765373119/10_nkb0l0.png'
   }
 ];
 
@@ -103,28 +54,33 @@ export default function EditorialBoard() {
 
       {/* Team Grid */}
       <div className="max-w-7xl mx-auto px-4 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
           {editorialTeam.map((member) => (
             <div
               key={member.id}
-              className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2"
+              className="group bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300"
             >
-              <div className="relative h-80 bg-gradient-to-br from-gray-100 to-gray-200">
+              {/* Image Container */}
+              <div className="relative h-64 overflow-hidden bg-gray-100">
                 <Image
                   src={member.image}
                   alt={member.name}
                   fill
-                  className="object-cover"
+                  className="object-cover object-top group-hover:scale-105 transition-transform duration-500"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-                <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
-                  <h3 className="text-2xl font-bold mb-1">{member.name}</h3>
-                  <p className="text-sm text-white/90 font-medium">{member.position}</p>
-                </div>
               </div>
-              <div className="p-6">
-                <p className="text-gray-600 text-sm leading-relaxed">
-                  {member.description}
+
+              {/* Info Section - Below image */}
+              <div className="p-5 bg-gradient-to-br from-gray-50 to-white">
+                <h3 className="text-lg font-bold text-gray-900 mb-2 leading-tight">{member.name}</h3>
+                <div className="flex items-center gap-2 mb-2">
+                  <div className="h-1 w-10 bg-[#D00614] rounded-full"></div>
+                  <p className="text-sm font-semibold text-gray-600 uppercase tracking-wide">
+                    {member.position}
+                  </p>
+                </div>
+                <p className="text-xs text-gray-500 font-mono bg-gray-100 inline-block px-3 py-1 rounded-full">
+                  ID: {member.idNumber}
                 </p>
               </div>
             </div>

@@ -5,9 +5,10 @@ import Link from 'next/link';
 import { useState } from 'react';
 
 const menuItems = [
+  { name: 'হোম', href: '/', icon: '🏠' },
   { name: 'সর্বশেষ', href: '/latest' },
-  { name: 'রাজধানী', href: '/category/rajdhani' },
   { name: 'চুয়াডাঙ্গা', href: '/category/chuadanga-district' },
+  { name: 'রাজধানী', href: '/category/rajdhani' }, 
   { name: 'রাজনীতি', href: '/category/politics' },
   { name: 'অর্থনীতি', href: '/category/economy' },
   { name: 'শিক্ষা', href: '/category/education' },
@@ -51,15 +52,9 @@ export default function ProfessionalHeader() {
       <div className="bg-gradient-to-r from-gray-50 via-white to-gray-50 border-b border-gray-200">
         <div className="max-w-[1280px] mx-auto px-4">
           <div className="flex items-center justify-between py-3 min-h-[80px]">
-            {/* Left: Location & Date */}
+            {/* Left: Date */}
             <div className="flex items-center gap-4 text-sm text-gray-700">
-              <div className="flex items-center gap-1.5">
-                <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                  <path fillRule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd" />
-                </svg>
-                <span className="font-medium">চুয়াডাঙ্গা</span>
-              </div>
-              <span className="hidden md:inline text-gray-600">{today}</span>
+              <span className="text-gray-600">{today}</span>
             </div>
 
             {/* Center: Logo */}
@@ -130,6 +125,7 @@ export default function ProfessionalHeader() {
                     className="px-3 py-3 text-[15px] font-medium text-gray-700 hover:text-[#D00614] hover:bg-red-50 rounded-md transition-all relative group inline-flex items-center"
                     style={{ fontFamily: "'Noto Sans Bengali', sans-serif" }}
                   >
+                    {item.icon && <span className="mr-1">{item.icon}</span>}
                     {item.name}
                     {item.hasDropdown && <span className="ml-1">▾</span>}
                   </Link>
@@ -232,6 +228,7 @@ export default function ProfessionalHeader() {
                       onClick={() => setIsMobileMenuOpen(false)}
                       className="block px-4 py-2.5 text-sm font-medium text-gray-700 hover:bg-gray-50 hover:text-[#D00614] transition"
                     >
+                      {item.icon && <span className="mr-1">{item.icon}</span>}
                       {item.name}
                     </Link>
                   )}
