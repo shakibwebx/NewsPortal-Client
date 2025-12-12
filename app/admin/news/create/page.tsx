@@ -26,6 +26,7 @@ export default function CreateNews() {
     summary: '',
     content: '',
     category: '',
+    upazila: '',
     image: '',
     author: '',
     isFeatured: false,
@@ -149,8 +150,8 @@ export default function CreateNews() {
             />
           </div>
 
-          {/* Category and Author Row */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {/* Category, Upazila and Author Row */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div>
               <label htmlFor="category" className="block text-sm font-medium text-gray-700 mb-2">
                 Category *
@@ -168,6 +169,27 @@ export default function CreateNews() {
                       {cat.name}
                     </SelectItem>
                   ))}
+                </SelectContent>
+              </Select>
+            </div>
+
+            <div>
+              <label htmlFor="upazila" className="block text-sm font-medium text-gray-700 mb-2">
+                Upazila (Optional)
+              </label>
+              <Select
+                value={formData.upazila || 'none'}
+                onValueChange={(value) => setFormData({ ...formData, upazila: value === 'none' ? '' : value })}
+              >
+                <SelectTrigger>
+                  <SelectValue placeholder="Select Upazila" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="none">None</SelectItem>
+                  <SelectItem value="chuadanga-sadar">চুয়াডাঙ্গা সদর</SelectItem>
+                  <SelectItem value="alamdanga">আলমডাঙ্গা</SelectItem>
+                  <SelectItem value="damurhuda">দামুড়হুদা</SelectItem>
+                  <SelectItem value="jibannagar">জীবননগর</SelectItem>
                 </SelectContent>
               </Select>
             </div>
